@@ -1,0 +1,34 @@
+/* Estilos para ajustar el tamaño del carrusel */
+.carousel {
+    width: 30vw;
+}
+
+/* Estilo para ajustar el tamaño de las imágenes */
+.carousel img {
+    width: 30vw;
+    height: 60vh;
+}
+
+.carousel-caption {
+    background-color: blue;
+    margin-bottom: 50px;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 15vh;
+}
+
+.item-folios-content__page {
+    border: 1px solid #3e3e3e;
+    padding: 2vh;
+    border-radius: 10px;
+    margin-bottom: 5vh;
+}
+
+.masonry-wrap {
+    display: flex;
+    justify-content: center;
+}

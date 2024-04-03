@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-5">
+        </div>
+        <div class="row mt-5">
+        </div>
+        <div class="row">
+            <div class="col-full s-content__header">
+                <h2 class="s-content__header-title">
+                    Blog
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <p><a href="/category/all">Category</a> > <a href="/category/{{post.categoria}}">{{ post.categoria }}</a></p>
+        </div>
+        <section class="s-content__section s-content__section--featured">
+            <div class="row masonry-wrap">
+                <div class="masonry">
+                    <div class="col-100">
+                        <!-- start masonry__brick -->
+                        <div class="masonry__brick col-100">
+                            <div class="item-folios-content__page">
+                                <div class="item-folios-content__thumb">
+                                    <img src="/media/{{ post.imagen }}" alt="">
+                                </div>
+                                <div class="item-folios-content__text">
+                                    <h3>{{ post.titulo }}</h3>
+                                    <p class="item-folios-content__cat">{{ post.contenido }}</p>
+                                    <p class="item-folios-content__cat">Author: <span class="font-weight-bold">{{ post.autor }}</span></p>
+                                </div>
+                            </div>
+                        </div> <!-- end masonry__brick -->
+                    </div>
+                </div>
+            </div>
+            {% comment %} Options buttons Edit, Delete {% endcomment %}
+            <div class="row">
+                <div class="col-100">
+                    <div class="item-folios-content__text">
+                        <a href="/editar-publicacion/{{ post.id }}" class="btn btn-primary">Edit</a>
+                        <a href="/eliminar-publicacion/{{ post.id }}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- end s-content__section -->
+    </div>
+{% endblock %}

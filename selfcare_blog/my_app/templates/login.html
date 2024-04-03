@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-5"></div>
+        <div class="row mt-5"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Sign In</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error_type }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

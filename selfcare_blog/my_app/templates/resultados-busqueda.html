@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-5">
+        </div>
+        <div class="row mt-5">
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h3>Results for: <span class="font-weight-bold">{{ query }}</span></h3>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                {% if publicaciones %}
+                    {% for publicacion in publicaciones %}
+                        <!-- start masonry__brick -->
+                        <div class="masonry__brick col-100">
+                            <div class="item-folios-content__page">
+                                <div class="item-folios-content__thumb">
+                                    <a href="{% url 'detail_post' publicacion.id %}">
+                                        <img src="/media/{{ publicacion.imagen }}" alt="">
+                                    </a> 
+                                </div>
+                                <div class="item-folios-content__text">
+                                    <h3 class="item-folios-content__title"><a href="{% url 'detail_post' publicacion.id %}">{{ publicacion.titulo }}</a></h3>
+                                    <p class="item-folios-content__cat">{{ publicacion.resumen }}</p>
+                                </div>
+                            </div>
+                        </div> <!-- end masonry__brick -->
+                    <!-- Acá termina el for -->
+                    {% endfor %}
+                {% else %}
+                    <h3>
+                        There are no results for your search.
+                    </h3>
+                    <a href="{% url 'index' %}">Go to home</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

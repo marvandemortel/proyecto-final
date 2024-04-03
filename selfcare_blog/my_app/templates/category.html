@@ -1,0 +1,61 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <!-- # site-content
+    ================================================== -->
+    <div id="content">
+        <div class="container">
+            <div class="row mt-5"></div>
+            <div class="row mt-5"></div>
+            <div class="row">
+                <div class="col-full s-content__header">
+                    <h2 class="s-content__header-title">
+                        Blog
+                    </h2>
+                </div>
+            </div>
+            <div class="row">
+                <p><a href="/category/all">Category</a> > <a href="">{{ categoria }}</a></p>
+            </div>
+
+
+            {% comment %} quiero crear una lista de tarjetas las tarjetas deben mostrar una imagen con un titulo y un resumen de la publicación {% endcomment %}
+            <section class="s-content__section s-content__section--featured">
+                <div class="row masonry-wrap">
+                    <div class="masonry">
+                        <div class="col-100">
+                        {% if not publicaciones %}
+                            <div class="bg-white d-flex flex-column justify-content-center align-items-center p-5" style="z-index: 1">
+                                <p class="font-weight-bolder m-2 ">Sorry.</p>
+                                <p class="m-2">
+                                    There are no posts in this category.
+                                </p>
+                            </div>
+                        {% else %}
+                            <!-- Acá tenemos que hacer el for -->
+                            {% for publicacion in publicaciones %}
+                                    <!-- start masonry__brick -->
+                                    <div class="masonry__brick col-100">
+                                        <div class="item-folios-content__page">
+                                            <div class="item-folios-content__thumb">
+                                                <a href="{% url 'detail_post' publicacion.id %}">
+                                                    <img src="/media/{{ publicacion.imagen }}" alt="">
+                                                </a> 
+                                            </div>
+                                            <div class="item-folios-content__text">
+                                                <h3 class="item-folios-content__title"><a href="{% url 'detail_post' publicacion.id %}">{{ publicacion.titulo }}</a></h3>
+                                                <p class="item-folios-content__cat">{{ publicacion.resumen }}</p>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end masonry__brick -->
+                            
+                            <!-- Acá termina el for -->
+                            {% endfor %}
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </section> <!-- end s-content__section -->
+        </div> <!-- end container -->
+    </section> <!-- end s-content -->
+{% endblock %}

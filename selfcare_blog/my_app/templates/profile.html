@@ -1,0 +1,54 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-5"></div>
+        <div class="row mt-5"></div>
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h2>Profile</h2>
+            </div>
+        </div>
+        <div class="row mt-5 col-md-12">
+            <div class="row col-md-12">
+                <img src="/media/{{ perfil.imagen_perfil }}" alt="Imagen de perfil" class="img-fluid">
+                <div class="col ml-5">
+                    <h5 class="row">Username: <p class="ml-2 font-weight-bold">{{ perfil.usuario }}<p></h5>
+                    <h5 class="row">Email: <p class="ml-2 font-weight-bold">{{ perfil.email }}<p></h5>
+                    <h5 class="row">Lastlogin: <p class="ml-2 font-weight-bold">{{ perfil.lastlogin }}<p></h5>
+                    <h5><a href="/logout/">Logout</a></h5>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h2>Posts</h2>
+            </div>
+            <div class="col">
+                {% if publicaciones %}
+                    {% for publicacion in publicaciones %}
+                        <!-- start masonry__brick -->
+                        <div class="masonry__brick col-100">
+                            <div class="item-folios-content__page">
+                                <div class="item-folios-content__thumb">
+                                    <a href="{% url 'detail_post' publicacion.id %}">
+                                        <img src="/media/{{ publicacion.imagen }}" alt="">
+                                    </a> 
+                                </div>
+                                <div class="item-folios-content__text">
+                                    <h3 class="item-folios-content__title"><a href="{% url 'detail_post' publicacion.id %}">{{ publicacion.titulo }}</a></h3>
+                                    <p class="item-folios-content__cat">{{ publicacion.resumen }}</p>
+                                </div>
+                            </div>
+                        </div> <!-- end masonry__brick -->
+                    <!-- Acá termina el for -->
+                    {% endfor %}
+                {% else %}
+                    <h3>
+                        There are no posts yet.
+                    </h3>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

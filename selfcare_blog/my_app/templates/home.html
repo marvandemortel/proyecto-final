@@ -1,0 +1,57 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <div class="hero__slider swiper-container">
+        <div class="swiper-wrapper">
+            <article class="hero__slide swiper-slide p-1">
+                {% if not publicaciones_izq and not publicaciones_der %}
+                    <div class="bg-white d-flex flex-column justify-content-center align-items-center p-5" style="z-index: 1">
+                        <p class="font-weight-bolder m-2 ">Sorry.</p>
+                        <p class="m-2">
+                            There are no publications to show.
+                        </p>
+                    </div>
+                {% elif publicaciones_izq or publicaciones_der %}
+                        <section class="left-carrousel">
+                            <div class="row mt-5">
+                            </div>
+                            <div class="row mt-5">
+                            </div>
+                            <div class="row mt-5">
+                            </div>
+                            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    {% for publicacion in publicaciones_izq %}
+                                        <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}">
+                                            <a href="/publicacion/{{ publicacion.ultima_publicacion.id }}">
+                                                <img src="/media/{{ publicacion.ultima_publicacion.imagen }}" class="d-block w-100" alt="{{ publicacion.ultima_publicacion.titulo }}">
+                                            </a>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="right-content">
+                            {% for publicacion in publicaciones_der %} <!-- Como máximo 4 publicaciones -->
+                                <div class="border-bottom">
+                                    <a href="/publicacion/{{ publicacion.ultima_publicacion.id }}">
+                                        <h5>{{ publicacion.ultima_publicacion.titulo }}</h5>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </section>
+                {% endif %}
+            </article>
+        </div>
+    </div> <!-- end hero slider -->
+
+    <a href="#colophon" class="hero__scroll-down smoothscroll">
+        <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.25 6.75L4.75 12L10.25 17.25"></path>
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.25 12H5"></path>
+        </svg>
+        <span>Scroll</span>
+    </a>
+    
+{% endblock %}
